@@ -16,7 +16,26 @@ module.exports = {
          .select('steps.id', 'schemes.scheme_name', 'steps.step_number', 'steps.instructions')
          .where('scheme_id', id)
          .orderBy('steps.step_number', 'asc')
-   }
+   },
+   add(scheme) {
+      return db('schemes')
+         .insert(scheme)
+         .then(([id]) => {
+            return db('schemes').where('id', id).first()
+         })
+   },
+   // addStep(stepData, id) {
+   //    return db('steps')
+   //       .insert(stepData)
+   // },
+   update(changes, id) {
+      return db('schemes')
+         .where('id', id)
+         .update(changes)
+   },
+   remove(id) {
+      return db('schemes').where('id', id).del()
+   },
 }
 
 // select 
