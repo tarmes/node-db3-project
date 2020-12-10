@@ -24,10 +24,10 @@ module.exports = {
             return db('schemes').where('id', id).first()
          })
    },
-   // addStep(stepData, id) {
-   //    return db('steps')
-   //       .insert(stepData)
-   // },
+   addStep(stepData, id) {
+      return db('steps')
+         .insert({ ...stepData, scheme_id: id })
+   },
    update(changes, id) {
       return db('schemes')
          .where('id', id)
